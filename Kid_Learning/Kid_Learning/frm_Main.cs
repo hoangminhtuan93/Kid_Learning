@@ -67,10 +67,12 @@ namespace Kid_Learning
             if (str_type == "Alphabet")
             {
                 int_cell = arr_alphabet.Count();
+                this.Text = "Learning Number";
             }
             else if (str_type == "Number")
             {
                 int_cell = arr_nummber.Count();
+                this.Text = "Learning Number";
             }
             else
             {
