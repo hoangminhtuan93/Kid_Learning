@@ -26,21 +26,72 @@ namespace Kid_Learning
         private void tbLP_modify()
         {
             UC_label cell_tbLP;
-            for (int i = 0; i < arr_alphabet.Count(); i++)
+            int int_cell = 0;
+            if (str_type == "Alphabet")
+            {
+                int_cell = arr_alphabet.Count();
+            }
+            else if (str_type == "Number")
+            {
+                int_cell = arr_nummber.Count();
+            }
+            else
+            {
+
+            }
+
+            for (int i = 0; i < int_cell; i++)
             {
                 cell_tbLP = new UC_label();
-                cell_tbLP.str_label = arr_alphabet[i];
+                cell_tbLP.str_type = str_type;
+                if (str_type == "Alphabet")
+                {
+                    cell_tbLP.str_label = arr_alphabet[i];
+                }
+                else if (str_type == "Number")
+                {
+                    cell_tbLP.str_label = arr_nummber[i];
+                }
+                else
+                {
+
+                }
                 tbLP_main.Controls.Add(cell_tbLP);
             }
         }
 
         private void btn_read_all_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < arr_alphabet.Count(); i++)
+            string str_link = string.Empty;
+            int int_cell = 0;
+            if (str_type == "Alphabet")
+            {
+                int_cell = arr_alphabet.Count();
+            }
+            else if (str_type == "Number")
+            {
+                int_cell = arr_nummber.Count();
+            }
+            else
+            {
+
+            }
+            for (int i = 0; i < int_cell; i++)
             {
                 this.tbLP_main.GetControlFromPosition(i % 7, i / 7).BackColor = Color.Red;
 
-                string str_link = Application.StartupPath + "\\sounds\\" + arr_alphabet[i] + ".wav";
+                if (str_type == "Alphabet")
+                {
+                    str_link = Application.StartupPath + "\\sounds\\" + arr_alphabet[i] + ".wav";
+                }
+                else if (str_type == "Number")
+                {
+                    str_link = Application.StartupPath + "\\sounds\\" + arr_nummber[i] + ".mp3";
+                }
+                else
+                {
+
+                }
 
                 WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
                 wplayer.URL = str_link;
