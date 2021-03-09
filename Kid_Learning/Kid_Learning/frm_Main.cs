@@ -62,44 +62,57 @@ namespace Kid_Learning
 
         private void btn_read_all_Click(object sender, EventArgs e)
         {
-            string str_link = string.Empty;
-            int int_cell = 0;
-            if (str_type == "Alphabet")
+            if (txt_break_time.Text == "" || txt_break_time.Text == "0" || int.Parse(txt_break_time.Text.ToString()) == 0)
             {
-                int_cell = arr_alphabet.Count();
-                this.Text = "Learning Number";
-            }
-            else if (str_type == "Number")
-            {
-                int_cell = arr_nummber.Count();
-                this.Text = "Learning Number";
+                MessageBox.Show("Please input break time.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-
-            }
-            for (int i = 0; i < int_cell; i++)
-            {
-                this.tbLP_main.GetControlFromPosition(i % 7, i / 7).BackColor = Color.Red;
-
+                btn_read_all.Enabled = false;
+                btn_read_all.Text = "Reading";
+                int int_wait_time = int.Parse(txt_break_time.Text.ToString());
+                string str_link = string.Empty;
+                int int_cell = 0;
                 if (str_type == "Alphabet")
                 {
-                    str_link = Application.StartupPath + "\\sounds\\" + arr_alphabet[i] + ".wav";
+                    int_cell = arr_alphabet.Count();
+                    this.Text = "Learning Number";
                 }
                 else if (str_type == "Number")
                 {
-                    str_link = Application.StartupPath + "\\sounds\\" + arr_nummber[i] + ".mp3";
+                    int_cell = arr_nummber.Count();
+                    this.Text = "Learning Number";
                 }
                 else
                 {
 
                 }
+                for (int i = 0; i < int_cell; i++)
+                {
+                    this.tbLP_main.GetControlFromPosition(i % 7, i / 7).BackColor = Color.Red;
 
-                WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
-                wplayer.URL = str_link;
-                wplayer.controls.play();
-                wait(1500);
-                this.tbLP_main.GetControlFromPosition(i % 7, i / 7).BackColor = Color.Transparent;
+                    if (str_type == "Alphabet")
+                    {
+                        str_link = Application.StartupPath + "\\sounds\\" + arr_alphabet[i] + ".wav";
+                    }
+                    else if (str_type == "Number")
+                    {
+                        str_link = Application.StartupPath + "\\sounds\\" + arr_nummber[i] + ".mp3";
+                    }
+                    else
+                    {
+
+                    }
+
+                    WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
+                    wplayer.URL = str_link;
+                    wplayer.controls.play();
+                    wait(int_wait_time);
+                    this.tbLP_main.GetControlFromPosition(i % 7, i / 7).BackColor = Color.Transparent;
+                }
+                btn_read_all.Text = "Read All";
+                btn_read_all.Enabled = true;
+                btn_read_all.Focus();
             }
         }
         public void wait(int milliseconds)
@@ -122,6 +135,14 @@ namespace Kid_Learning
             while (timer1.Enabled)
             {
                 Application.DoEvents();
+            }
+        }
+
+        private void txt_break_time_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }

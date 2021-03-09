@@ -32,6 +32,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btn_read_all = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txt_break_time = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -60,6 +62,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.txt_break_time);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btn_read_all);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 400);
@@ -69,7 +73,7 @@
             // 
             // btn_read_all
             // 
-            this.btn_read_all.Location = new System.Drawing.Point(12, 6);
+            this.btn_read_all.Location = new System.Drawing.Point(263, 6);
             this.btn_read_all.Name = "btn_read_all";
             this.btn_read_all.Size = new System.Drawing.Size(75, 35);
             this.btn_read_all.TabIndex = 0;
@@ -86,6 +90,24 @@
             this.panel2.Size = new System.Drawing.Size(800, 400);
             this.panel2.TabIndex = 2;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 17);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Break time (ms):";
+            // 
+            // txt_break_time
+            // 
+            this.txt_break_time.Location = new System.Drawing.Point(100, 14);
+            this.txt_break_time.Name = "txt_break_time";
+            this.txt_break_time.Size = new System.Drawing.Size(144, 20);
+            this.txt_break_time.TabIndex = 2;
+            this.txt_break_time.Text = "1500";
+            this.txt_break_time.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_break_time_KeyPress);
+            // 
             // frm_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -99,6 +121,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frm_Main_Load);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -110,6 +133,8 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btn_read_all;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txt_break_time;
     }
 }
 
