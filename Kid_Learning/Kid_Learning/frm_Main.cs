@@ -18,6 +18,7 @@ namespace Kid_Learning
         public string[] arr_alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
         public string[] arr_nummber = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
         public string str_type = string.Empty;
+        public bool bit_reading = false;
         private void frm_Main_Load(object sender, EventArgs e)
         {
             tbLP_modify();
@@ -69,9 +70,12 @@ namespace Kid_Learning
             else
             {
                 btn_read_all.Enabled = false;
-                btn_read_all.Text = "Reading";
+                txt_break_time.Enabled = false;
+                btn_stop.Visible = true;
+                btn_read_all.Text = "Reading...";
                 int int_wait_time = int.Parse(txt_break_time.Text.ToString());
                 string str_link = string.Empty;
+                bit_reading = true;
                 int int_cell = 0;
                 if (str_type == "Alphabet")
                 {
@@ -89,29 +93,39 @@ namespace Kid_Learning
                 }
                 for (int i = 0; i < int_cell; i++)
                 {
-                    this.tbLP_main.GetControlFromPosition(i % 7, i / 7).BackColor = Color.Red;
+                    if (bit_reading)
+                    {
+                        this.tbLP_main.GetControlFromPosition(i % 7, i / 7).BackColor = Color.Red;
 
-                    if (str_type == "Alphabet")
-                    {
-                        str_link = Application.StartupPath + "\\sounds\\" + arr_alphabet[i] + ".wav";
-                    }
-                    else if (str_type == "Number")
-                    {
-                        str_link = Application.StartupPath + "\\sounds\\" + arr_nummber[i] + ".mp3";
+                        if (str_type == "Alphabet")
+                        {
+                            str_link = Application.StartupPath + "\\sounds\\" + arr_alphabet[i] + ".wav";
+                        }
+                        else if (str_type == "Number")
+                        {
+                            str_link = Application.StartupPath + "\\sounds\\" + arr_nummber[i] + ".mp3";
+                        }
+                        else
+                        {
+
+                        }
+
+                        WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
+                        wplayer.URL = str_link;
+                        wplayer.controls.play();
+                        wait(int_wait_time);
+                        this.tbLP_main.GetControlFromPosition(i % 7, i / 7).BackColor = Color.Transparent;
                     }
                     else
                     {
-
+                        break;
                     }
-
-                    WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
-                    wplayer.URL = str_link;
-                    wplayer.controls.play();
-                    wait(int_wait_time);
-                    this.tbLP_main.GetControlFromPosition(i % 7, i / 7).BackColor = Color.Transparent;
                 }
                 btn_read_all.Text = "Read All";
                 btn_read_all.Enabled = true;
+                txt_break_time.Enabled = true;
+                btn_stop.Visible = false;
+                bit_reading = false;
                 btn_read_all.Focus();
             }
         }
@@ -144,6 +158,11 @@ namespace Kid_Learning
             {
                 e.Handled = true;
             }
+        }
+
+        private void btn_stop_Click(object sender, EventArgs e)
+        {
+            bit_reading = false;
         }
     }
 }

@@ -30,10 +30,11 @@
         {
             this.tbLP_main = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txt_break_time = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.btn_read_all = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txt_break_time = new System.Windows.Forms.TextBox();
+            this.btn_stop = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -64,12 +65,31 @@
             // 
             this.panel1.Controls.Add(this.txt_break_time);
             this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.btn_stop);
             this.panel1.Controls.Add(this.btn_read_all);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 400);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 50);
             this.panel1.TabIndex = 1;
+            // 
+            // txt_break_time
+            // 
+            this.txt_break_time.Location = new System.Drawing.Point(100, 14);
+            this.txt_break_time.Name = "txt_break_time";
+            this.txt_break_time.Size = new System.Drawing.Size(144, 20);
+            this.txt_break_time.TabIndex = 2;
+            this.txt_break_time.Text = "1500";
+            this.txt_break_time.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_break_time_KeyPress);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 17);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Break time (ms):";
             // 
             // btn_read_all
             // 
@@ -90,23 +110,16 @@
             this.panel2.Size = new System.Drawing.Size(800, 400);
             this.panel2.TabIndex = 2;
             // 
-            // label1
+            // btn_stop
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 17);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Break time (ms):";
-            // 
-            // txt_break_time
-            // 
-            this.txt_break_time.Location = new System.Drawing.Point(100, 14);
-            this.txt_break_time.Name = "txt_break_time";
-            this.txt_break_time.Size = new System.Drawing.Size(144, 20);
-            this.txt_break_time.TabIndex = 2;
-            this.txt_break_time.Text = "1500";
-            this.txt_break_time.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_break_time_KeyPress);
+            this.btn_stop.Location = new System.Drawing.Point(355, 6);
+            this.btn_stop.Name = "btn_stop";
+            this.btn_stop.Size = new System.Drawing.Size(75, 35);
+            this.btn_stop.TabIndex = 0;
+            this.btn_stop.Text = "Stop";
+            this.btn_stop.UseVisualStyleBackColor = true;
+            this.btn_stop.Visible = false;
+            this.btn_stop.Click += new System.EventHandler(this.btn_stop_Click);
             // 
             // frm_Main
             // 
@@ -135,6 +148,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txt_break_time;
+        private System.Windows.Forms.Button btn_stop;
     }
 }
 
