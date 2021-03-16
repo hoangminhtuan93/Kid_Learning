@@ -35,5 +35,15 @@ namespace Kid_Learning
 
             }
         }
+
+        private void btn_vn_alphabet_Click(object sender, EventArgs e)
+        {
+            frm_Main frm = new frm_Main();
+            frm.str_type = "VNAlphabet";
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+        }
     }
 }

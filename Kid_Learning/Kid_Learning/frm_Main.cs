@@ -17,6 +17,8 @@ namespace Kid_Learning
         }
         public string[] arr_alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
         public string[] arr_nummber = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
+        public string[] arr_VN_alphabet = { "A", "Ă", "Â", "B", "C", "D", "Đ", "E", "Ê", "G", "H", "I", "K", "L", "M", "N", "O", "Ô", "Ơ", "P", "Q", "R", "S", "T", "U", "Ư", "V", "X", "Y" };
+
         public string str_type = string.Empty;
         public bool bit_reading = false;
         private void frm_Main_Load(object sender, EventArgs e)
